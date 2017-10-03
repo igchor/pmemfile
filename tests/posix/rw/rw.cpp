@@ -310,8 +310,7 @@ TEST_F(rw, basic)
 
 	pmemfile_close(pfp, f);
 
-	EXPECT_TRUE(test_pmemfile_stats_match(
-		pfp, 2, 0, 0, (env_block_size == 4096) ? 2 : 1));
+	EXPECT_TRUE(test_pmemfile_stats_match(pfp, 2, 0, 0, 1));
 
 	f = pmemfile_open(pfp, "/file1", PMEMFILE_O_RDONLY);
 	ASSERT_NE(f, nullptr) << strerror(errno);
@@ -329,8 +328,7 @@ TEST_F(rw, basic)
 						    {0100644, 1, 4220, "file1"},
 					    }));
 
-	EXPECT_TRUE(test_pmemfile_stats_match(
-		pfp, 2, 0, 0, (env_block_size == 4096) ? 2 : 1));
+	EXPECT_TRUE(test_pmemfile_stats_match(pfp, 2, 0, 0, 1));
 
 	ASSERT_EQ(pmemfile_unlink(pfp, "/file1"), 0);
 
@@ -365,8 +363,7 @@ TEST_F(rw, basic)
 						    {0100644, 1, 8192, "file1"},
 					    }));
 
-	EXPECT_TRUE(test_pmemfile_stats_match(
-		pfp, 2, 0, 0, (env_block_size == 4096) ? 2 : 1));
+	EXPECT_TRUE(test_pmemfile_stats_match(pfp, 2, 0, 0, 1));
 
 	ASSERT_EQ(pmemfile_unlink(pfp, "/file1"), 0);
 }
