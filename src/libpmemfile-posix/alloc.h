@@ -36,7 +36,6 @@
 #include <stdlib.h>
 
 #ifdef FAULT_INJECTION
-
 void *_pf_malloc(size_t, const char *);
 void *_pf_calloc(size_t, size_t, const char *);
 void _pf_free(void *, const char *);
