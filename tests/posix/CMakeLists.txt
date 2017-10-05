@@ -126,12 +126,18 @@ build_test_using_shared(file_dirs dirs/dirs.cpp)
 build_test_using_shared(file_fcntl fcntl/fcntl.cpp)
 build_test_using_shared(file_getdents getdents/getdents.cpp)
 build_test_using_shared(file_mt mt/mt.cpp)
+build_test_using_shared(file_offset_mapping offset_mapping/offset_mapping.cpp )
 build_test_using_shared(file_openp openp/openp.cpp)
 build_test_using_shared(file_permissions permissions/permissions.cpp)
 build_test_using_shared(file_rw rw/rw.cpp)
 build_test_using_shared(file_stat stat/stat.cpp)
 build_test_using_shared(file_symlinks symlinks/symlinks.cpp)
 build_test_using_shared(file_timestamps timestamps/timestamps.cpp)
+
+target_include_directories(file_offset_mapping PUBLIC ${CMAKE_SOURCE_DIR}/src/libpmemfile-posix)
+target_sources(file_offset_mapping PUBLIC
+    ${CMAKE_SOURCE_DIR}/src/libpmemfile-posix/offset_mapping.c
+    ${CMAKE_SOURCE_DIR}/src/libpmemfile-posix/blocks.c)
 
 # Configures test ${name} using tracer ${tracer} and gtest filter ${filter}
 # Optional next argument is passed as is to test.
@@ -242,6 +248,9 @@ else()
 	add_mt_test(drd       20)
 	add_mt_test(pmemcheck 50)
 endif()
+
+add_test_generic(offset_mapping none)
+add_test_generic(offset_mapping memcheck)
 
 add_test_generic(openp none)
 add_test_generic(openp memcheck)

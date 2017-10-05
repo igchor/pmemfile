@@ -37,6 +37,11 @@
 
 #include "libpmemfile-posix.h"
 
+/* branching factor is 2^N_CHILDREN_POW */
+#define N_CHILDREN_POW 4
+
+#define N_CHILDREN (1 << N_CHILDREN_POW)
+
 struct pmemfile_block_desc;
 
 struct offset_map_entry {
