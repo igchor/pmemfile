@@ -46,6 +46,10 @@
 #include <sys/mman.h>
 #include <unistd.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #define VERIFY(f) COMPILE_ERROR_ON(PMEMFILE_##f != f);
 
 VERIFY(O_RDONLY);
@@ -178,4 +182,7 @@ VERIFY(CAP_FSETID);
 
 #undef VERIFY
 
+#ifdef __cplusplus
+}
+#endif
 #endif
